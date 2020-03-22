@@ -42,7 +42,28 @@
 			out.print("<option value=\""+l.getUsuario()+"\" >"+l.getUsuario()+"</option>");
 		}
 		%>
-		</select>	
+		</select>
+		
+		<table>
+		<%for(Locacao l : locacoes){%>
+			<tr>
+			<td>Código Pessoa</td>
+			<td><%out.print(l.getUsuario()); %></td>
+			<td>Código Veículo</td>
+			<td><%out.print(l.getVeiculo()); %></td>
+			<td>Data de locação</td>
+			<td><%out.print(l.getDtLocacao()); %></td>
+			<td>Data de devolução</td>
+			<td><%out.print(l.getDtDev()); %></td>
+			<td>Multa</td>
+			<td><%out.print(l.getVlMulta()); %></td>
+			<td>Valor a pagar</td>
+			<td><%out.print(l.getVlPagar()); %></td>
+			<td>Valor pago</td>
+			<td><%out.print(l.getVlPago()); %></td>
+			<%}%>
+			<tr>
+		</table>	
 	</form>
 </body>
 </html>
