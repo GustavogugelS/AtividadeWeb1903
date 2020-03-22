@@ -33,7 +33,7 @@
 		%>
 		
 		<!-- Adiciona em um combo -->
-		<select>
+		<select name="slCarros">
 		<%
 		for(Carros c : carros){
 			out.print("<option value=\""+c.getCodigo()+"\" >"+c.getCodigo()+"</option>");
@@ -41,7 +41,23 @@
 		%>
 		</select>
 		
-		
+		<table>
+		<%for(Carros c : carros){%>
+			<tr>
+			<td>Código carro: </td>
+			<td><%out.print(c.getCodigo()); %></td>
+			<td>Descrição: </td>
+			<td><%out.print(c.getDescricao()); %></td>
+			<td>Marca: </td>
+			<td><%out.print(c.getMarca()); %></td>
+			<td>Modelo: </td>
+			<td><%out.print(c.getModelo()); %></td>
+			<td>Valor: </td>
+			<td><%out.print(c.getValor()); %></td>
+			<%}%>
+			<tr>
+		</table>			
 	</form>
+	<p><a href="Index.jsp">Voltar</a></p>
 </body>
 </html>

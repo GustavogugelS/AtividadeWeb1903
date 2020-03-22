@@ -47,23 +47,24 @@
 		<table>
 		<%for(Locacao l : locacoes){%>
 			<tr>
-			<td>Código Pessoa</td>
+			<td>Código Pessoa: </td>
 			<td><%out.print(l.getUsuario()); %></td>
-			<td>Código Veículo</td>
+			<td>Código Veículo: </td>
 			<td><%out.print(l.getVeiculo()); %></td>
-			<td>Data de locação</td>
+			<td>Data de locação :</td>
 			<td><%out.print(l.getDtLocacao()); %></td>
-			<td>Data de devolução</td>
+			<td>Data de devolução: </td>
 			<td><%out.print(l.getDtDev()); %></td>
-			<td>Multa</td>
+			<td>Multa: </td>
 			<td><%out.print(l.getVlMulta()); %></td>
-			<td>Valor a pagar</td>
+			<td>Valor a pagar: </td>
 			<td><%out.print(l.getVlPagar()); %></td>
-			<td>Valor pago</td>
+			<td>Valor pago: </td>
 			<td><%out.print(l.getVlPago()); %></td>
 			<%}%>
 			<tr>
 		</table>	
 	</form>
+	<p><a href="Index.jsp">Voltar</a></p>
 </body>
 </html>

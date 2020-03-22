@@ -48,7 +48,32 @@
 			out.print("<option value=\""+p.getCodigo()+"\" >"+p.getCodigo()+"</option>");
 		}
 		%>
-		</select>	
+		</select>
+		<table>
+		<%for(Pessoas p : pessoas){%>
+			<tr>
+			<td>Código Pessoa :</td>
+			<td><%out.print(p.getCodigo()); %></td>
+			<td>Nome:</td>
+			<td><%out.print(p.getNome()); %></td>
+			<td>Sobrenome: </td>
+			<td><%out.print(p.getSobrenome()); %></td>
+			<td>CNH:</td>
+			<td><%out.print(p.getCnh()); %></td>
+			<td>Data de Nascimento:</td>
+			<td><%out.print(p.getNascimento()); %></td>
+			<td>Endereço: </td>
+			<td><%out.print(p.getEndereco()); %></td>
+			<td>Cidade: </td>
+			<td><%out.print(p.getCidade()); %></td>
+			<td>UF: </td>
+			<td><%out.print(p.getUf()); %></td>
+			<td>Cpl: </td>
+			<td><%out.print(p.getCpl()); %></td>
+			<%}%>
+			<tr>
+		</table>		
 	</form>
+	<p><a href="Index.jsp">Voltar</a></p>
 </body>
 </html>
