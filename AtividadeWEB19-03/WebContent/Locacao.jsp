@@ -22,6 +22,8 @@
 		
 		<input type="submit" value="Enviar" />	
 	</form>
+	
+
 	<form>
 		<%
 		List<Locacao> locacoes;
@@ -35,8 +37,9 @@
 		out.print("	Tamanho: " + locacoes.size());
 		%>
 		
+			
 		<!-- Adiciona em um combo -->
-		<select>
+		<select name="loc">
 		<%
 		for(Locacao l : locacoes){
 			out.print("<option value=\""+l.getUsuario()+"\" >"+l.getUsuario()+"</option>");
@@ -44,6 +47,11 @@
 		%>
 		</select>
 		
+		LOQUE
+		<% 
+		out.println(request.getAttribute("loc"));
+		%> 
+				
 		<table>
 		<%for(Locacao l : locacoes){%>
 			<tr>

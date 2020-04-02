@@ -1,27 +1,37 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="bins.Carros"%>
+<%@page import="model.Carros"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Cadastro de Veículo</title>
-</head>
-<body>
-	<form action="VeiculosCRUD.jsp" method="get">
-		Código do carro: <input type="text" name="cdCarro"> <br>
-		Nome do carro: <input type="text" name="nmCarro"> <br>
-		Valor do carro: <input type="text" name="vlCarro"> <br>
-		Tipo: <label name="vlCarro"></label> <br>
-		
-		<input type="submit" value="Enviar" />	
-	</form>
-	
-	<form>
-		<%
-		List<Carros> carros;
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Cadastro de Veículos!</title>
+  </head>
+ <body>
+ 	<form action="VeiculoCadastro" method="get">
+	 <div class="form-group">
+	    <label for="exampleInputEmail1">Código do Veículo</label>
+	    <input type="text" class="form-control" name="cdCarro" aria-describedby="emailHelp">
+	 </div>
+	 <div class="form-group">
+	    <label for="exampleInputEmail1">Nome do Veículo</label>
+	    <input type="text" class="form-control" name="nmCarro" aria-describedby="emailHelp">
+	 </div>
+	 <div class="form-group">
+	    <label for="exampleInputEmail1">Valor do Veículo</label>
+	    <input type="number" class="form-control" name="vlCarro" aria-describedby="emailHelp">
+	 </div>
+	  	<button type="submit" class="btn btn-primary">Cadastrar</button>
+	  	
+	  	<%List<Carros> carros;
 		if(session.getAttribute("carros") == null){
 			carros = new ArrayList<Carros>();
 			session.setAttribute("carros", carros);
@@ -29,17 +39,19 @@
 		else
 			carros = (ArrayList<Carros>) session.getAttribute("carros");
 		
-		out.print("	Tamanho: " + carros.size());
-		%>
-		
-		<!-- Adiciona em um combo -->
-		<select name="slCarros">
-		<%
-		for(Carros c : carros){
-			out.print("<option value=\""+c.getCodigo()+"\" >"+c.getCodigo()+"</option>");
-		}
-		%>
+		out.print("<label>Quantidade de veículos cadastrados:</label> " + carros.size());%>
+	</form>
+	<br>
+	<div>	
+	<!-- Adiciona em um combo -->
+	<div class="form-group">
+		<label for= "exampleFormControlSelect1">Selecione um carro para alterar</label>
+		<select class="form-control" id="exampleFormControlSelect1">
+			<%for(Carros c : carros){
+				out.print("<option value=\"" + c.getCodigo() + "\" >" + c.getCodigo()+ "</option>");
+			}%>
 		</select>
+   </div>
 		
 		<table>
 		<%for(Carros c : carros){%>
@@ -56,8 +68,14 @@
 			<td><%out.print(c.getValor()); %></td>
 			<%}%>
 			<tr>
-		</table>			
-	</form>
+		</table>
+	</div>
 	<p><a href="Index.jsp">Voltar</a></p>
-</body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
 </html>
