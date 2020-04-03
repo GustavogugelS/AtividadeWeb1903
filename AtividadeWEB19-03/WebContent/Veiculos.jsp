@@ -52,7 +52,6 @@
 			}%>
 		</select>
    </div>
-		
 		<table>
 		<%for(Carros c : carros){%>
 			<tr>
@@ -70,7 +69,9 @@
 			<tr>
 		</table>
 	</div>
-	<p><a href="Index.jsp">Voltar</a></p>
+	<div>
+		<button class="btn btn-warning"><a href="Index.jsp" >Voltar</a></button>
+	</div>	
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

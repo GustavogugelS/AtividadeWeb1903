@@ -1,32 +1,78 @@
+<%@page import="model.Pessoas"%>
+<%@page import="model.Carros"%>
+<%@page import="controler.VeiculoCadastro"%>
+<%@page import="model.Locacao"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="bins.Locacao"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Locação de veículos</title>
-</head>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Locação</title>
+  </head>
 <body>
-	<form action="LocacaoCRUD.jsp" method="get">
-		<p>Código do carro: <input type="text" name="cdCarro"> </p>
-		<p>Código da pessoa: <input type="text" name="cdUsuario"> </p>
-		<p>Data Locação: <input type="text" name="dtLocacao"> </p>
-		<p>Data prev. devolução: <input type="text" name="dtPrevDevolucao"> </p>
-		<p>Data devolução: <input type="text" name="dtDevolucao"> </p>
-		<p>Valor cobrar: <input type="text" name="vlCobrar"> </p>
-		<p>Valor de multa: <input type="text" name="vlMulta"> </p>
-		<p>Valor Pago: <input type="text" name="vlPago"> </p>
-		
-		<input type="submit" value="Enviar" />	
+	<form action="LocacaoCadastro" method="get" name="cdCarro">
+	<div>
+		<label for="exampleInputEmail1">Código do carro</label>
+		<select class="form-control" id="exampleFormControlSelect1" name="cdCarro">				
+				<%List<Carros> carros;
+				if(session.getAttribute("carros") == null){
+					carros = new ArrayList<Carros>();
+					session.setAttribute("carros", carros);
+				}
+				else
+					carros = (ArrayList<Carros>) session.getAttribute("carros");
+				
+				for(Carros l : carros){
+					out.print("<option value=\""+l.getCodigo()+"\" >"+l.getCodigo()+"</option>");
+				}%>				
+		</select>
+	</div>
+	 <div class="form-group">
+	    <label for="exampleInputEmail1">Código da pessoa</label>
+	    <select class="form-control" id="exampleFormControlSelect1" name="cdUsusario">
+	    	<%List <Pessoas> pessoas;
+	    	for(Carros l : carros){
+			out.print("<option value=\""+l.getCodigo()+"\" >"+l.getCodigo()+"</option>");
+			}%>
+	    </select>
+	 </div>
+	 <div class="form-group">
+	    <label for="exampleInputEmail1">Data Locação</label>
+	    <input type="Date" class="form-control" name="dtLocacao" aria-describedby="emailHelp">
+	 </div>
+	 <div class="form-group">
+	    <label for="exampleInputEmail1">Data prev. devolução</label>
+	    <input type="Date" class="form-control" name="dtPrevDevolucao" aria-describedby="emailHelp">
+	 </div>
+	 <div class="form-group">
+	    <label for="exampleInputEmail1">Data devolução</label>
+	    <input type="Date" class="form-control" name="dtDevolucao" aria-describedby="emailHelp">
+	 </div>
+	 <div class="form-group">
+	    <label for="exampleInputEmail1">Valor cobrar</label>
+	    <input type="text" class="form-control" name="vlCobrar" aria-describedby="emailHelp">
+	 </div>
+	 <div class="form-group">
+	    <label for="exampleInputEmail1">Valor de multa</label>
+	    <input type="text" class="form-control" name="vlMulta" aria-describedby="emailHelp">
+	 </div>
+	 <div class="form-group">
+	    <label for="exampleInputEmail1">Valor Pago</label>
+	    <input type="text" class="form-control" name="vlPago" aria-describedby="emailHelp">
+	 </div>	 	 	 	 	 	 	 		
+		<button type="submit" class="btn btn-primary">Locar</button>
 	</form>
 	
-
-	<form>
-		<%
-		List<Locacao> locacoes;
+		<%List<Locacao> locacoes;
 		if(session.getAttribute("locacoes") == null){
 			locacoes = new ArrayList<Locacao>();
 			session.setAttribute("locacoes", locacoes);
@@ -34,25 +80,17 @@
 		else
 			locacoes = (ArrayList<Locacao>) session.getAttribute("locacoes");
 		
-		out.print("	Tamanho: " + locacoes.size());
-		%>
+		out.print("	Tamanho: " + locacoes.size());%>
 		
 			
 		<!-- Adiciona em um combo -->
-		<select name="loc">
-		<%
-		for(Locacao l : locacoes){
-			out.print("<option value=\""+l.getUsuario()+"\" >"+l.getUsuario()+"</option>");
-		}
-		%>
+		<select class="form-control" id="exampleFormControlSelect1" name="slLocacao">
+			<%for(Locacao l : locacoes){
+				out.print("<option value=\""+l.getUsuario()+"\" >"+l.getUsuario()+"</option>");
+			}%>
 		</select>
-		
-		LOQUE
-		<% 
-		out.println(request.getAttribute("loc"));
-		%> 
 				
-		<table>
+		<div>
 		<%for(Locacao l : locacoes){%>
 			<tr>
 			<td>Código Pessoa: </td>
@@ -71,8 +109,15 @@
 			<td><%out.print(l.getVlPago()); %></td>
 			<%}%>
 			<tr>
-		</table>	
-	</form>
-	<p><a href="Index.jsp">Voltar</a></p>
-</body>
+		</div><br>
+	<div>
+		<button class="btn btn-warning"><a href="Index.jsp" >Voltar</a></button>
+	</div>	
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
 </html>
