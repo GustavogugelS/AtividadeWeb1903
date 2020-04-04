@@ -23,53 +23,52 @@
 	<div>
 		<label for="exampleInputEmail1">Código do carro</label>
 		<select class="form-control" id="exampleFormControlSelect1" name="cdCarro">				
-				<%List<Carros> carros;
-				if(session.getAttribute("carros") == null){
-					carros = new ArrayList<Carros>();
-					session.setAttribute("carros", carros);
-				}
-				else
-					carros = (ArrayList<Carros>) session.getAttribute("carros");
-				
-				for(Carros l : carros){
-					out.print("<option value=\""+l.getCodigo()+"\" >"+l.getCodigo()+"</option>");
-				}%>				
+			<%List<Carros> carros;
+			if(session.getAttribute("carros") == null){
+			carros = new ArrayList<Carros>();
+			session.setAttribute("carros", carros);
+			}
+			else
+				carros = (ArrayList<Carros>) session.getAttribute("carros");
+			
+			for(Carros l : carros){
+				out.print("<option value=\""+l.getCodigo()+"\" >"+l.getCodigo()+"</option>");
+			}%>				
 		</select>
 	</div>
 	 <div class="form-group">
-	    <label for="exampleInputEmail1">Código da pessoa</label>
-	    <select class="form-control" id="exampleFormControlSelect1" name="cdUsusario">
+		<label for="exampleInputEmail1">Código da pessoa</label>
+	    <select class="form-control" id="exampleFormControlSelect1" name="cdUsuario">
 	    	<%List <Pessoas> pessoas;
-	    	for(Carros l : carros){
-			out.print("<option value=\""+l.getCodigo()+"\" >"+l.getCodigo()+"</option>");
+	   		if(session.getAttribute("pessoas") == null){
+	   			pessoas = new ArrayList<Pessoas>();
+				session.setAttribute("pessoas", pessoas);
+			}
+			else
+				pessoas = (ArrayList<Pessoas>) session.getAttribute("pessoas");	
+	    		
+	    	for(Pessoas p : pessoas){
+				out.print("<option value=\""+p.getCodigo()+"\" >"+p.getCodigo()+"</option>");
 			}%>
 	    </select>
 	 </div>
 	 <div class="form-group">
-	    <label for="exampleInputEmail1">Data Locação</label>
-	    <input type="Date" class="form-control" name="dtLocacao" aria-describedby="emailHelp">
+	    <label for="exampleInputEmail1">Data Locação (Ex. 30/12/1899)</label>
+	    <input type="text" class="form-control" name="dtLocacao" aria-describedby="emailHelp">
 	 </div>
 	 <div class="form-group">
-	    <label for="exampleInputEmail1">Data prev. devolução</label>
-	    <input type="Date" class="form-control" name="dtPrevDevolucao" aria-describedby="emailHelp">
+	    <label for="exampleInputEmail1">Data prev. devolução (Ex. 30/12/1899)</label>
+	    <input type="text" class="form-control" name="dtPrevDevolucao" aria-describedby="emailHelp">
 	 </div>
-	 <div class="form-group">
-	    <label for="exampleInputEmail1">Data devolução</label>
-	    <input type="Date" class="form-control" name="dtDevolucao" aria-describedby="emailHelp">
-	 </div>
-	 <div class="form-group">
+	  <div class="form-group">
 	    <label for="exampleInputEmail1">Valor cobrar</label>
 	    <input type="text" class="form-control" name="vlCobrar" aria-describedby="emailHelp">
 	 </div>
-	 <div class="form-group">
-	    <label for="exampleInputEmail1">Valor de multa</label>
-	    <input type="text" class="form-control" name="vlMulta" aria-describedby="emailHelp">
-	 </div>
-	 <div class="form-group">
-	    <label for="exampleInputEmail1">Valor Pago</label>
-	    <input type="text" class="form-control" name="vlPago" aria-describedby="emailHelp">
-	 </div>	 	 	 	 	 	 	 		
-		<button type="submit" class="btn btn-primary">Locar</button>
+<!--  	 <div class="form-group"> -->
+<!--	    <label for="exampleInputEmail1">Valor Pago</label>-->
+<!--	    <input type="text" class="form-control" name="vlPago" aria-describedby="emailHelp">-->
+<!--	 </div>	 	 	 	 -->	 	 	 		
+		<button type="submit" class="btn btn-primary">Locar</button><label for="exampleInputEmail1">Atenção, todos os veículos geram 10% do valor como multa por dia de atraso!</label>
 	</form>
 	
 		<%List<Locacao> locacoes;
@@ -80,36 +79,60 @@
 		else
 			locacoes = (ArrayList<Locacao>) session.getAttribute("locacoes");
 		
-		out.print("	Tamanho: " + locacoes.size());%>
+		//out.print("	Tamanho: " + locacoes.size());%>
 		
-			
-		<!-- Adiciona em um combo -->
-		<select class="form-control" id="exampleFormControlSelect1" name="slLocacao">
-			<%for(Locacao l : locacoes){
-				out.print("<option value=\""+l.getUsuario()+"\" >"+l.getUsuario()+"</option>");
-			}%>
-		</select>
-				
+
+	<br>
+	<div>
+		<table class="table table-dark">
+		  <thead>
+		    <tr>
+		      <th scope="col">Pessoa</th>
+		      <th scope="col">Veículo</th>
+		      <th scope="col">Data de locação</th>
+		      <th scope="col">Prev. devolução</th>
+		      <th scope="col">Data de devolução</th>
+		      <th scope="col">Multa</th>
+		      <th scope="col">Valor Locação</th>
+		      <th scope="col">Valor pago (Multa + Locação)</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  <%for(Locacao l : locacoes){%>
+		    <tr>
+		      <td><%out.print(l.getUsuario()); %></td>
+		      <td><%out.print(l.getVeiculo()); %></td>
+		      <td><%out.print(l.getDtLocacao()); %></td>
+		      <td><%out.print(l.getDtPrevLocacao()); %></td>
+		      <td><%out.print(l.getDtDev()); %></td>
+		      <td><%out.print(l.getVlMulta()); %></td>
+		      <td><%out.print(l.getVlPagar()); %></td>
+		      <td><%out.print(l.getVlPago()); %></td>
+		    <%}%>
+		    </tr>
+		  </tbody>
+		</table><br>
+		
+		<form action="LocacaoAlteracao">
 		<div>
-		<%for(Locacao l : locacoes){%>
-			<tr>
-			<td>Código Pessoa: </td>
-			<td><%out.print(l.getUsuario()); %></td>
-			<td>Código Veículo: </td>
-			<td><%out.print(l.getVeiculo()); %></td>
-			<td>Data de locação :</td>
-			<td><%out.print(l.getDtLocacao()); %></td>
-			<td>Data de devolução: </td>
-			<td><%out.print(l.getDtDev()); %></td>
-			<td>Multa: </td>
-			<td><%out.print(l.getVlMulta()); %></td>
-			<td>Valor a pagar: </td>
-			<td><%out.print(l.getVlPagar()); %></td>
-			<td>Valor pago: </td>
-			<td><%out.print(l.getVlPago()); %></td>
-			<%}%>
-			<tr>
-		</div><br>
+			<h3><label for="exampleInputEmail1">Devolução</label></h3>
+		<div>
+			<label for="exampleInputEmail1">Selecione o Veículo</label>
+			<select class="form-control" id="exampleFormControlSelect1" name="slLocacao">
+				<%for(Locacao l : locacoes){
+					out.print("<option value=\""+l.getUsuario()+"\" >"+l.getUsuario()+"</option>");
+				}%>
+			</select>
+		</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">Informe a data de devolução</label>
+			 	<input type="text" class="form-control" name="dtDevolucao" aria-describedby="emailHelp">
+			 </div>
+		</div>
+		<button type="submit" class="btn btn-primary">Alterar</button> 
+	</form><br>
+	
+		
 	<div>
 		<button class="btn btn-warning"><a href="Index.jsp" >Voltar</a></button>
 	</div>	

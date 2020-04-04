@@ -51,24 +51,31 @@
 				out.print("<option value=\"" + c.getCodigo() + "\" >" + c.getCodigo()+ "</option>");
 			}%>
 		</select>
-   </div>
-		<table>
-		<%for(Carros c : carros){%>
-			<tr>
-			<td>Código carro: </td>
-			<td><%out.print(c.getCodigo()); %></td>
-			<td>Descrição: </td>
-			<td><%out.print(c.getDescricao()); %></td>
-			<td>Marca: </td>
-			<td><%out.print(c.getMarca()); %></td>
-			<td>Modelo: </td>
-			<td><%out.print(c.getModelo()); %></td>
-			<td>Valor: </td>
-			<td><%out.print(c.getValor()); %></td>
-			<%}%>
-			<tr>
-		</table>
-	</div>
+	<br>
+	<div>
+		<table class="table table-dark">
+		  <thead>
+		    <tr>
+		      <th scope="col">Código</th>
+		      <th scope="col">Descição</th>
+		      <th scope="col">Marca</th>
+		      <th scope="col">Modelo</th>
+		      <th scope="col">Valor</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  <%for(Carros c : carros){%>
+		    <tr>
+		      <td><%out.print(c.getCodigo()); %></td>
+		      <td><%out.print(c.getDescricao()); %></td>
+		      <td><%out.print(c.getMarca()); %></td>
+		      <td><%out.print(c.getModelo()); %></td>
+		      <td><%out.print(c.getValor()); %></td>
+		    <%}%>
+		    </tr>
+		  </tbody>
+		</table><br>
+		</div>
 	<div>
 		<button class="btn btn-warning"><a href="Index.jsp" >Voltar</a></button>
 	</div>	

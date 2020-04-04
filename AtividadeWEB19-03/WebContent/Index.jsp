@@ -14,13 +14,13 @@
   </head>
 <body>
 	<div>
-		<button class="btn btn-warning"><a href="Veiculos.jsp" >Cadastrar Veículo</a></button>
+		<button class="btn btn-warning"><a href="Veiculos.jsp" >Cadastrar Veículos</a></button>
 	</div><br>
 	<div>
-		<button class="btn btn-warning"><a href="Usuarios.jsp" >Cadastrar Pesso</a></button>
+		<button class="btn btn-warning"><a href="Usuarios.jsp" >Cadastrar Pessoas</a></button>
 	</div><br>
 	<div>
-		<button class="btn btn-warning"><a href="Locacao.jsp" >Realizar Locação</a></button>
+		<button class="btn btn-warning"><a href="Locacao.jsp" >Realizar Locações</a></button>
 	</div><br>
 	
     <!-- Optional JavaScript -->

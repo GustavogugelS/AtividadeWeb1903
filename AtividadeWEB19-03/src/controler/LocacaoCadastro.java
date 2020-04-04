@@ -62,14 +62,16 @@ public class LocacaoCadastro extends HttpServlet {
 		}		
 		
 		
-		l.setDtDev(request.getParameter("dtDevolucao"));
+		
+		
+		//l.setDtDev(request.getParameter("dtDevolucao"));
 		l.setDtLocacao(request.getParameter("dtLocacao"));
 		l.setDtPrevLocacao(request.getParameter("dtPrevDevolucao"));
 		l.setUsuario(Integer.parseInt(request.getParameter("cdUsuario")));
 		l.setVeiculo(Integer.parseInt(request.getParameter("cdCarro")));
-		l.setVlMulta(Float.parseFloat(request.getParameter("vlMulta")));
+		//l.setVlMulta(Float.parseFloat(request.getParameter("vlMulta")));
 		l.setVlPagar(Float.parseFloat(request.getParameter("vlCobrar")));
-		l.setVlPago(Float.parseFloat(request.getParameter("vlPago")));
+		//l.setVlPago(Float.parseFloat(request.getParameter("vlPago")));
 		
 		locacoes.add(l);
 		
