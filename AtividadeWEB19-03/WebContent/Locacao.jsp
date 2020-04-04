@@ -62,7 +62,7 @@
 	 </div>
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">Valor cobrar</label>
-	    <input type="text" class="form-control" name="vlCobrar" aria-describedby="emailHelp">
+	    <input type="text" class="form-control" name="vlCobrar" aria-describedby="emailHelp" value='0'>
 	 </div>
 <!--  	 <div class="form-group"> -->
 <!--	    <label for="exampleInputEmail1">Valor Pago</label>-->
@@ -112,6 +112,7 @@
 		    </tr>
 		  </tbody>
 		</table><br>
+		</div>
 		
 		<form action="LocacaoAlteracao">
 		<div>

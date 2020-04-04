@@ -36,7 +36,7 @@
 	 </div>
 	 <div class="form-group">
 	    <label for="exampleInputEmail1">Nascimento</label>
-	    <input type="text" class="form-control" name="cdCNH" aria-describedby="dtNascimento">
+	    <input type="text" class="form-control" name="dtNascimento" aria-describedby="dtNascimento">
 	 </div>
 	 <div class="form-group">
 	    <label for="exampleInputEmail1">Telefone</label>
@@ -78,43 +78,49 @@
 		else
 			pessoas = (ArrayList<Pessoas>) session.getAttribute("pessoas");
 		
-		out.print("	Tamanho: " + pessoas.size());
+		//out.print("	Tamanho: " + pessoas.size());
 		%>
 		
 		<!-- Adiciona em um combo -->
-		<select class="form-control" id="exampleFormControlSelect1" name="slUsuario">
+		<!--  <select class="form-control" id="exampleFormControlSelect1" name="slUsuario">
 			<%
 			for(Pessoas p : pessoas){
 				out.print("<option value=\""+p.getCodigo()+"\" >"+p.getCodigo()+"</option>");
 			}
-			%>
-		</select>
+		%>-->
+		</select><br>
 	<div>
-		<table>
-		<%for(Pessoas p : pessoas){%>
-			<tr>
-			<td>Código Pessoa :</td>
+		<table class="table table-dark">
+		  <thead>
+		    <tr>
+		      <th scope="col">Código</th>
+		      <th scope="col">Nome</th>
+		      <th scope="col">Sobrenome</th>
+		      <th scope="col">CNH</th>
+		      <th scope="col">Data de Nascimento</th>
+		      <th scope="col">Endereço</th>
+		      <th scope="col">Cidade</th>
+		      <th scope="col">UF</th>
+		      <th scope="col">Cpl</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  <%for(Pessoas p : pessoas){%>
+		    <tr>
 			<td><%out.print(p.getCodigo()); %></td>
-			<td>Nome:</td>
 			<td><%out.print(p.getNome()); %></td>
-			<td>Sobrenome: </td>
 			<td><%out.print(p.getSobrenome()); %></td>
-			<td>CNH:</td>
 			<td><%out.print(p.getCnh()); %></td>
-			<td>Data de Nascimento:</td>
 			<td><%out.print(p.getNascimento()); %></td>
-			<td>Endereço: </td>
 			<td><%out.print(p.getEndereco()); %></td>
-			<td>Cidade: </td>
 			<td><%out.print(p.getCidade()); %></td>
-			<td>UF: </td>
 			<td><%out.print(p.getUf()); %></td>
-			<td>Cpl: </td>
 			<td><%out.print(p.getCpl()); %></td>
-			<%}%>
-			<tr>
-		</table>
-	</div>		
+		    <%}%>
+		    </tr>
+		  </tbody>
+		</table><br>
+		</div>		
 	<div>
 		<button class="btn btn-warning"><a href="Index.jsp" >Voltar</a></button>
 	</div>	

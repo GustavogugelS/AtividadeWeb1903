@@ -63,7 +63,7 @@ public class PessoaCadastro extends HttpServlet {
 		
 		
 		p.setCep(request.getParameter("cdCep"));
-		p.setCidade(request.getParameter("nmCidade"));
+		p.setCidade(request.getParameter("cdCidade"));
 		p.setCnh(request.getParameter("cdCNH"));
 		p.setCpl(request.getParameter("cdCpl"));
 		p.setEmail(request.getParameter("nmEmail"));
